@@ -70,7 +70,7 @@ def generate_image(prompt):
 
         return "Saved to disk:" + filename
     
-    # OPEN JOURNEY
+    # HASSAN BLEND
     elif cfg.image_provider == 'hassan':
 
         API_URL = "https://api-inference.huggingface.co/models/hassanblend/HassanBlend1.5.1.2"
