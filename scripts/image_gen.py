@@ -52,6 +52,40 @@ def generate_image(prompt):
         image.save(os.path.join(working_directory, filename))
 
         return "Saved to disk:" + filename
+    
+    # OPEN JOURNEY
+    elif cfg.image_provider == 'openjourney':
+
+        API_URL = "https://api-inference.huggingface.co/models/prompthero/openjourney-v4"
+        headers = {"Authorization": "Bearer " + cfg.huggingface_api_token}
+
+        response = requests.post(API_URL, headers=headers, json={
+            "inputs": prompt,
+        })
+
+        image = Image.open(io.BytesIO(response.content))
+        print("Image Generated for prompt:" + prompt)
+
+        image.save(os.path.join(working_directory, filename))
+
+        return "Saved to disk:" + filename
+    
+    # OPEN JOURNEY
+    elif cfg.image_provider == 'hassan':
+
+        API_URL = "https://api-inference.huggingface.co/models/hassanblend/HassanBlend1.5.1.2"
+        headers = {"Authorization": "Bearer " + cfg.huggingface_api_token}
+
+        response = requests.post(API_URL, headers=headers, json={
+            "inputs": prompt,
+        })
+
+        image = Image.open(io.BytesIO(response.content))
+        print("Image Generated for prompt:" + prompt)
+
+        image.save(os.path.join(working_directory, filename))
+
+        return "Saved to disk:" + filename
 
     else:
         return "No Image Provider Set"
